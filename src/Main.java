@@ -3,6 +3,10 @@ import java.util.Arrays;
 public class Main {
 
 	public static void main(String[] args) {
+		Login login = Login.getInstance();
+		login.exibeLogin();
+		
+		/**
 		Usuarios usuarios = Usuarios.getInstance();
 		Usuario user1 = usuarios.adicionaUsuario("Lucas", "123", "123", "Gerente");
 		Usuario user2 = usuarios.adicionaUsuario("Andreza", "321", "321", "Gerente");
@@ -16,6 +20,10 @@ public class Main {
 		System.out.println(Arrays.toString(usuarios.listarUsuarios().toArray()));
 		usuarios = Usuarios.getInstance();
 		System.out.println(Arrays.toString(usuarios.listarUsuarios().toArray()));
+		 * 
+		 */
+		
+		
 
 	}
 
