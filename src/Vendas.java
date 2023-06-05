@@ -11,9 +11,25 @@ public final class Vendas {
 	}
 	
 	
-	public void executaVendas(double valor, String formaPagamento, String matricula) {
+	public void executaVenda(double valor, String formaPagamento, String matricula) {
 		Venda venda1 = new Venda(valor, formaPagamento, matricula);
 		vendas.add(venda1);
+	}
+	
+	public void gerarRelatorio() {
+		for(int i = 0; i < vendas.size(); i++) {
+			Venda venda = vendas.get(i);
+			System.out.println((i+1) + "- Matrícula: " + venda.getMatricula() + ". Valor: " + venda.getValor() + ". Forma de Pagamento: " + venda.getFormaPagamento());
+		}
+	}
+	
+	public void gerarRelatorioIndividual(String matricula) {
+		for(int i = 0; i < vendas.size(); i++) {
+			Venda venda = vendas.get(i);
+			if(vendas.get(i).getMatricula().equals(matricula)){				
+				System.out.println((i+1) + "- Matrícula: " + venda.getMatricula() + ". Valor: " + venda.getValor() + ". Forma de Pagamento: " + venda.getFormaPagamento());
+			}
+		}
 	}
 
 	public List<Venda> getVendas() {

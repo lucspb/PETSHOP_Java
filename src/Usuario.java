@@ -1,16 +1,23 @@
 
 public class Usuario {
 	
+	
 	private String nome;
 	private String matricula;
 	private String senha;
 	private String tipo;
+	Vendas vendas;
 	
 	public Usuario(String nome, String matricula, String senha, String tipo) {
 		this.nome = nome;
 		this.matricula = matricula;
 		this.senha = senha;
 		this.tipo = tipo;
+		this.vendas = Vendas.getInstance();
+	}
+	
+	public void gerarRelatorio() {
+		vendas.gerarRelatorio();
 	}
 
 	public String getNome() {
