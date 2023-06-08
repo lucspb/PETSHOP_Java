@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class Usuarios {
 	private static Usuarios instance;
@@ -13,15 +15,34 @@ public final class Usuarios {
 	
 	public Usuario adicionaUsuario(String nome, String matricula, String senha, String tipo) {
 		Usuario usuario;
-		if(tipo.equals("Gerente")) {
-			usuario = new Gerente(nome, matricula, senha);
-			System.out.println("Gerente cadastrado com sucesso!");
-		}else {
-			usuario = new Vendedor(nome, matricula, senha);
-			System.out.println("Vendedor cadastrado com sucesso!");
+		boolean senhaValida = validaSenha(senha);
+		if(senhaValida) {
+			if(tipo.equals("Gerente")) {
+				usuario = new Gerente(nome, matricula, senha);
+				System.out.println("Gerente cadastrado com sucesso!");
+			}else {
+				usuario = new Vendedor(nome, matricula, senha);
+				System.out.println("Vendedor cadastrado com sucesso!");
+			}
+			users.add(usuario);
+			return usuario;
+		} else {
+			System.out.println("Tente novamente");
+			return null;
 		}
-		users.add(usuario);
-		return usuario;
+		
+		
+	}
+	
+	public boolean validaSenha(String senha) {
+		Pattern senhaPattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$");
+		Matcher matcher = senhaPattern.matcher(senha);
+		
+		if(matcher.find()) {
+			return true;
+		}
+		return false;
+		
 	}
 	
 	public int indexOf(String matricula) {

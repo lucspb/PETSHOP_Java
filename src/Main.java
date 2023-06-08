@@ -6,7 +6,7 @@ public class Main {
 	static Usuarios users = Usuarios.getInstance();
 	
 	public static void main(String[] args) {
-		users.adicionaUsuario("Lucas", "luc123", "123", "Gerente");
+		users.adicionaUsuario("Lucas", "luc123", "Luc#123", "Gerente");
 		login.exibeLogin();
 	}
 
