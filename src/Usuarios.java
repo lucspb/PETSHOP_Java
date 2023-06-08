@@ -3,24 +3,30 @@ import java.util.List;
 
 public final class Usuarios {
 	private static Usuarios instance;
-	private List<Usuario> usuarios; 
+	private List<Usuario> users; 
 	
 	public Usuarios() {
-		this.usuarios = new ArrayList<>();
-		Usuario user1 = new Usuario("Lucas", "123", "senha1", "Gerente");
-		usuarios.add(user1);
+		this.users = new ArrayList<>();
+		Usuario user1 = new Usuario("Lucas", "luc123", "123", "Gerente");
+		users.add(user1);
 	}
 	
 	public Usuario adicionaUsuario(String nome, String matricula, String senha, String tipo) {
-		Usuario user = new Usuario(nome, matricula, senha, tipo);
-		usuarios.add(user);
-		System.out.println("Usuário cadastrado com sucesso!");
-		return user;
+		Usuario usuario;
+		if(tipo.equals("Gerente")) {
+			usuario = new Gerente(nome, matricula, senha);
+			System.out.println("Gerente cadastrado com sucesso!");
+		}else {
+			usuario = new Vendedor(nome, matricula, senha);
+			System.out.println("Vendedor cadastrado com sucesso!");
+		}
+		users.add(usuario);
+		return usuario;
 	}
 	
 	public int indexOf(String matricula) {
-		for(int i = 0; i < usuarios.size(); i++) {
-			if(usuarios.get(i).getMatricula().equals(matricula)) {
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getMatricula().equals(matricula)) {
 				return i;
 			}
 		}
@@ -30,15 +36,15 @@ public final class Usuarios {
 	public void removeUsuario(String matricula) {
 		int index = this.indexOf(matricula);
 		if(index != -1) {
-			usuarios.remove(index);
+			users.remove(index);
 			System.out.println("Usuário removido com sucesso!");
 		}else {
 			System.out.println("Nenhum usuário encontrado");
 		}
 	}
 	
-	public List<Usuario> listarUsuarios(){
-		return this.usuarios;
+	public List<Usuario> listarusers(){
+		return this.users;
 	}
 	
 	public static Usuarios getInstance() {
@@ -49,10 +55,10 @@ public final class Usuarios {
 	}
 	
 	public Usuario checkCredentials(String matricula, String senha) {
-		for(int i = 0; i < usuarios.size(); i++){
-			if(usuarios.get(i).getMatricula().equals(matricula)) {
-				if(usuarios.get(i).getSenha().equals(senha)) {
-					return usuarios.get(i);
+		for(int i = 0; i < users.size(); i++){
+			if(users.get(i).getMatricula().equals(matricula)) {
+				if(users.get(i).getSenha().equals(senha)) {
+					return users.get(i);
 				}
 			}
 		}

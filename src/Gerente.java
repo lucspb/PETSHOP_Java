@@ -1,5 +1,5 @@
 
-public class Gerente extends Usuario implements IUsuario{
+public class Gerente extends Usuario{
 	
 	public static Vendas vendas = Vendas.getInstance();
 	Usuarios users;
@@ -7,19 +7,15 @@ public class Gerente extends Usuario implements IUsuario{
 	
 	public Gerente(String nome, String matricula, String senha) {
 		super(nome, matricula, senha, "Gerente");
+		this.users = Usuarios.getInstance();
 	}
 	
 	public void cadastraVendedor(String nome, String matricula, String senha) {
-		users.adicionaUsuario(nome, matricula, senha, "Gerente");
+		users.adicionaUsuario(nome, matricula, senha, "Vendedor");
 	}
 	
 	public void removeUsuario(String matricula) {
 		users.removeUsuario(matricula);
-	}
-	
-	@Override
-	public void gerarRelatorio() {
-		vendas.gerarRelatorio();
 	}
 	
 	public void gerarRelatorioIndividual(String matricula) {
